@@ -12,8 +12,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid="StackSizeChange", name="StackSizeChange", version="1.7srg-1",dependencies="required-after:FML")
-//@NetworkMod(clientSideRequired=true, serverSideRequired=false)
+@Mod(modid="StackSizeChange", name="StackSizeChange", version="1.7srg-1",dependencies="required-after:FML", useMetadata = true)
 public class StackSizeChange
 {
 	@Mod.Instance("StackSizeChange")
