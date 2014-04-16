@@ -79,8 +79,8 @@ public class StackSizeChange
 		SaddleMax = (SaddleMax<1)?1:(SaddleMax>64)?64:SaddleMax;
 //		BucketMax = config.get(Configuration.CATEGORY_GENERAL, "BucketMax", 64, "Bucket Max Stack Size, min = 1, max = 64").getInt();
 //		BucketMax = (BucketMax<1)?1:(BucketMax>64)?64:BucketMax;
-//		PotionMax = config.get(Configuration.CATEGORY_GENERAL, "PotionMax", 64, "Potion Max Stack Size, min = 1, max = 64").getInt();
-//		PotionMax = (PotionMax<0)?1:(PotionMax>64)?64:PotionMax;
+		PotionMax = config.get(Configuration.CATEGORY_GENERAL, "PotionMax", 64, "Potion Max Stack Size, min = 1, max = 64").getInt();
+		PotionMax = (PotionMax<0)?1:(PotionMax>64)?64:PotionMax;
 //		SoupMax = config.get(Configuration.CATEGORY_GENERAL, "SoupMax", 64, "Soup Max Stack Size, min = 1, max = 64").getInt();
 //		SoupMax = (SoupMax<1)?1:(SoupMax>64)?64:SoupMax;
 //		MilkMax = config.get(Configuration.CATEGORY_GENERAL, "MilkMax", 64, "BucketMilk Max Stack Size, min = 1, max = 64").getInt();
@@ -180,17 +180,21 @@ public class StackSizeChange
 //			Item.glassBottle = (new ItemGlassBottleStack(118)).setUnlocalizedName("glassBottle");
 //		}
 	}
+    
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{
 
 	}
+
+    @Deprecated
 	public static void addName(Item item, String enName, String jaName)
 	{
 		LanguageRegistry.addName(item, enName);
 		LanguageRegistry.instance().addNameForObject(item, "ja_JP", jaName);
 	}
 
+    @Deprecated
 	public static void addName(Block block, String enName, String jaName)
 	{
 		LanguageRegistry.addName(block, enName);
