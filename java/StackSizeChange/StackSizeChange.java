@@ -12,7 +12,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid="StackSizeChange", name="StackSizeChange", version="1.7srg-1",dependencies="required-after:FML", useMetadata = true)
+@Mod(modid="StackSizeChange", name="StackSizeChange", version="1.7srg-2",dependencies="required-after:FML", useMetadata = true)
 public class StackSizeChange
 {
 	@Mod.Instance("StackSizeChange")
@@ -43,9 +43,9 @@ public class StackSizeChange
 	public static boolean isNetherSetWater;
 	public static boolean isStackCustom;
 	
-	public static Item bucketEmpty;
-	public static Item bucketWater;
-	public static Item bucketLava;
+//	public static Item bucketEmpty;
+//	public static Item bucketWater;
+//	public static Item bucketLava;
 	public static Item bucketMilk;
     public static Item bowlsoup;
 
@@ -77,8 +77,8 @@ public class StackSizeChange
 		RecordMax = (RecordMax<1)?1:(RecordMax>64)?64:RecordMax;
 		SaddleMax = config.get(Configuration.CATEGORY_GENERAL, "SaddleMax", 64, "Saddle Max Stack Size, min = 1, max = 64").getInt();
 		SaddleMax = (SaddleMax<1)?1:(SaddleMax>64)?64:SaddleMax;
-//		BucketMax = config.get(Configuration.CATEGORY_GENERAL, "BucketMax", 64, "Bucket Max Stack Size, min = 1, max = 64").getInt();
-//		BucketMax = (BucketMax<1)?1:(BucketMax>64)?64:BucketMax;
+		BucketMax = config.get(Configuration.CATEGORY_GENERAL, "BucketMax", 64, "Bucket Max Stack Size, min = 1, max = 64").getInt();
+		BucketMax = (BucketMax<1)?1:(BucketMax>64)?64:BucketMax;
 		PotionMax = config.get(Configuration.CATEGORY_GENERAL, "PotionMax", 64, "Potion Max Stack Size, min = 1, max = 64").getInt();
 		PotionMax = (PotionMax<0)?1:(PotionMax>64)?64:PotionMax;
 //		SoupMax = config.get(Configuration.CATEGORY_GENERAL, "SoupMax", 64, "Soup Max Stack Size, min = 1, max = 64").getInt();
@@ -131,6 +131,13 @@ public class StackSizeChange
 		Items.hopper_minecart.setMaxStackSize(CartMax);
 
 		Items.sign.setMaxStackSize(SignMax);
+        Items.bucket.setMaxStackSize(BucketMax);
+
+//        Items.milk_bucket.setMaxStackSize(MilkMax);
+//        Items.water_bucket.setMaxStackSize(BucketWaterMax);
+//        Items.lava_bucket.setMaxStackSize(BucketLavaMax);
+
+
 //		bowlSoup = (new ItemSoupStack(26, SoupAmount)).setUnlocalizedName("mushroomStew").setMaxStackSize(SoupMax);
 //		MinecraftForge.EVENT_BUS.register((ItemSoupStack)Item.bowlSoup);
 
@@ -185,20 +192,6 @@ public class StackSizeChange
 	public void load(FMLInitializationEvent event)
 	{
 
-	}
-
-    @Deprecated
-	public static void addName(Item item, String enName, String jaName)
-	{
-		LanguageRegistry.addName(item, enName);
-		LanguageRegistry.instance().addNameForObject(item, "ja_JP", jaName);
-	}
-
-    @Deprecated
-	public static void addName(Block block, String enName, String jaName)
-	{
-		LanguageRegistry.addName(block, enName);
-		LanguageRegistry.instance().addNameForObject(block, "ja_JP", jaName);
 	}
 
 	public static ItemStack addropItems(ItemStack par1ItemStack, EntityPlayer par3EntityPlayer, ItemStack addItemStack)
