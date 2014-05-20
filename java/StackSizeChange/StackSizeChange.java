@@ -36,6 +36,9 @@ public class StackSizeChange
 	public static int BucketWaterMax;
 	public static int BucketLavaMax;
 	public static int EnchantBookMax;
+	//1.6より追加のアイテム
+	public static int HorseArmorMax;
+	
 	public static boolean BucketReplace;
 	public static boolean addStackableBucket;
 	public static int StackableBucketID;
@@ -91,6 +94,8 @@ public class StackSizeChange
 //		BucketLavaMax = (BucketLavaMax<1)?1:(BucketLavaMax>64)?64:BucketLavaMax;
 		EnchantBookMax = config.get(Configuration.CATEGORY_GENERAL, "EnchantBookMax", 64, "EnchantableBook Max Stack Size, min = 1, max = 64").getInt();
 		EnchantBookMax = (EnchantBookMax<1)?1:(EnchantBookMax>64)?64:EnchantBookMax;
+		HorseArmorMax = config.get(Configuration.CATEGORY_GENERAL, "HorseArmorMax", 64, "Horse Armor Max Stack Size, min = 1, max = 64").getInt();
+		HorseArmorMax = (HorseArmorMax<1)?1:(HorseArmorMax>64)?64:HorseArmorMax;
 //		BucketReplace = config.get(Configuration.CATEGORY_GENERAL, "BucketReplace", true).getBoolean(true);
 //		addStackableBucket = config.get(Configuration.CATEGORY_GENERAL, "addStackableBucket", false).getBoolean(false);
 //		StackableBucketID = config.get(Configuration.CATEGORY_GENERAL, "StackableBucketID", 17250, "only use addStackableBacket=true. on use +0..+3 IDs, min = 4096, max = 31996").getInt();
@@ -133,6 +138,9 @@ public class StackSizeChange
 		Items.sign.setMaxStackSize(SignMax);
         Items.bucket.setMaxStackSize(BucketMax);
 
+        Items.diamond_horse_armor.setMaxStackSize(HorseArmorMax);
+        Items.golden_horse_armor.setMaxStackSize(HorseArmorMax);
+        Items.iron_horse_armor.setMaxStackSize(HorseArmorMax);
 //        Items.milk_bucket.setMaxStackSize(MilkMax);
 //        Items.water_bucket.setMaxStackSize(BucketWaterMax);
 //        Items.lava_bucket.setMaxStackSize(BucketLavaMax);
@@ -186,12 +194,6 @@ public class StackSizeChange
 //			Item.potion = (ItemPotion)(new ItemPotionStack(117)).setUnlocalizedName("potion").setMaxStackSize(PotionMax).setTextureName("potion_bottle_empty");
 //			Item.glassBottle = (new ItemGlassBottleStack(118)).setUnlocalizedName("glassBottle");
 //		}
-	}
-    
-	@EventHandler
-	public void load(FMLInitializationEvent event)
-	{
-
 	}
 
 	public static ItemStack addropItems(ItemStack par1ItemStack, EntityPlayer par3EntityPlayer, ItemStack addItemStack)
