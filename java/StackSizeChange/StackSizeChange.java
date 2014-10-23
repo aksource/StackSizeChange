@@ -1,11 +1,13 @@
 package StackSizeChange;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid="StackSizeChange", name="StackSizeChange", version="@VERSION@",dependencies="required-after:FML", useMetadata = true)
@@ -80,10 +82,10 @@ public class StackSizeChange
 		BucketMax = (BucketMax<1)?1:(BucketMax>64)?64:BucketMax;
 		PotionMax = config.get(Configuration.CATEGORY_GENERAL, "PotionMax", 64, "Potion Max Stack Size, min = 1, max = 64").getInt();
 		PotionMax = (PotionMax<0)?1:(PotionMax>64)?64:PotionMax;
-//		SoupMax = config.get(Configuration.CATEGORY_GENERAL, "SoupMax", 64, "Soup Max Stack Size, min = 1, max = 64").getInt();
-//		SoupMax = (SoupMax<1)?1:(SoupMax>64)?64:SoupMax;
-//		MilkMax = config.get(Configuration.CATEGORY_GENERAL, "MilkMax", 64, "BucketMilk Max Stack Size, min = 1, max = 64").getInt();
-//		MilkMax = (MilkMax<1)?1:(MilkMax>64)?64:MilkMax;
+		SoupMax = config.get(Configuration.CATEGORY_GENERAL, "SoupMax", 64, "Soup Max Stack Size, min = 1, max = 64").getInt();
+		SoupMax = (SoupMax<1)?1:(SoupMax>64)?64:SoupMax;
+		MilkMax = config.get(Configuration.CATEGORY_GENERAL, "MilkMax", 64, "BucketMilk Max Stack Size, min = 1, max = 64").getInt();
+		MilkMax = (MilkMax<1)?1:(MilkMax>64)?64:MilkMax;
 //		BucketWaterMax = config.get(Configuration.CATEGORY_GENERAL, "BucketWaterMax", 64, "BucketWater Max Stack Size, min = 1, max = 64").getInt();
 //		BucketWaterMax = (BucketWaterMax<1)?1:(BucketWaterMax>64)?64:BucketWaterMax;
 //		BucketLavaMax = config.get(Configuration.CATEGORY_GENERAL, "BucketLavaMax", 64, "BucketLava Max Stack Size, min = 1, max = 64").getInt();
@@ -115,8 +117,9 @@ public class StackSizeChange
 		Items.bed.setMaxStackSize(BedMax);
 		Items.ender_pearl.setMaxStackSize(EnderMax);
 		Items.potionitem.setMaxStackSize(PotionMax);
-		Items.record_13.setMaxStackSize(RecordMax);
-		Items.record_cat.setMaxStackSize(RecordMax);
+        Items.mushroom_stew.setMaxStackSize(SoupMax);
+        Items.record_13.setMaxStackSize(RecordMax);
+        Items.record_cat.setMaxStackSize(RecordMax);
 		Items.record_blocks.setMaxStackSize(RecordMax);
 		Items.record_chirp.setMaxStackSize(RecordMax);
 		Items.record_far.setMaxStackSize(RecordMax);
@@ -137,12 +140,12 @@ public class StackSizeChange
         Items.diamond_horse_armor.setMaxStackSize(HorseArmorMax);
         Items.golden_horse_armor.setMaxStackSize(HorseArmorMax);
         Items.iron_horse_armor.setMaxStackSize(HorseArmorMax);
-//        Items.milk_bucket.setMaxStackSize(MilkMax);
+        Items.milk_bucket.setMaxStackSize(MilkMax);
 //        Items.water_bucket.setMaxStackSize(BucketWaterMax);
 //        Items.lava_bucket.setMaxStackSize(BucketLavaMax);
 
 
-//		bowlSoup = (new ItemSoupStack(26, SoupAmount)).setUnlocalizedName("mushroomStew").setMaxStackSize(SoupMax);
+
 //		MinecraftForge.EVENT_BUS.register((ItemSoupStack)Item.bowlSoup);
 
 //		if(BucketReplace)
@@ -191,6 +194,11 @@ public class StackSizeChange
 //			Item.glassBottle = (new ItemGlassBottleStack(118)).setUnlocalizedName("glassBottle");
 //		}
 	}
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(new ItemUseEventHook());
+    }
 
 	public static ItemStack addropItems(ItemStack par1ItemStack, EntityPlayer par3EntityPlayer, ItemStack addItemStack)
 	{
