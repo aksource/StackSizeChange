@@ -1,14 +1,14 @@
 package StackSizeChange;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid="StackSizeChange", name="StackSizeChange", version="@VERSION@",dependencies="required-after:FML", useMetadata = true)
 public class StackSizeChange
@@ -104,7 +104,12 @@ public class StackSizeChange
 //		isStackCustom = config.get(Configuration.CATEGORY_GENERAL, "isStackCustom", true, "true: Improve the operation of the stack").getBoolean(true);
 //		
 		config.save();
-		Items.wooden_door.setMaxStackSize(DoorMax);
+		Items.dark_oak_door.setMaxStackSize(DoorMax);
+        Items.acacia_door.setMaxStackSize(DoorMax);
+        Items.birch_door.setMaxStackSize(DoorMax);
+        Items.jungle_door.setMaxStackSize(DoorMax);
+        Items.oak_door.setMaxStackSize(DoorMax);
+        Items.spruce_door.setMaxStackSize(DoorMax);
 		Items.minecart.setMaxStackSize(CartMax);
 		Items.saddle.setMaxStackSize(SaddleMax);
 		Items.iron_door.setMaxStackSize(DoorMax);
