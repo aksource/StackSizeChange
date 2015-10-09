@@ -2,7 +2,6 @@ package StackSizeChange;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -11,10 +10,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid="StackSizeChange", name="StackSizeChange", version="@VERSION@",dependencies="required-after:FML", useMetadata = true)
-public class StackSizeChange
-{
-	@Mod.Instance("StackSizeChange")
-	public static StackSizeChange instance;
+public class StackSizeChange {
 	
 	public static int SignMax;
 	public static int DoorMax;
@@ -28,27 +24,27 @@ public class StackSizeChange
 	public static int RecordMax;
 	public static int SaddleMax;
 	public static int BucketMax;
-	public static int PotionMax;
+//	public static int PotionMax;
 	public static int SoupMax;
 	public static int MilkMax;
-	public static int BucketWaterMax;
-	public static int BucketLavaMax;
+//	public static int BucketWaterMax;
+//	public static int BucketLavaMax;
 	public static int EnchantBookMax;
 	//1.6より追加のアイテム
 	public static int HorseArmorMax;
 	
-	public static boolean BucketReplace;
-	public static boolean addStackableBucket;
-	public static int StackableBucketID;
-	public static int SoupAmount;
-	public static boolean isNetherSetWater;
+//	public static boolean BucketReplace;
+//	public static boolean addStackableBucket;
+//	public static int StackableBucketID;
+//	public static int SoupAmount;
+//	public static boolean isNetherSetWater;
 	public static boolean isStackCustom;
 	
 //	public static Item bucketEmpty;
 //	public static Item bucketWater;
 //	public static Item bucketLava;
-	public static Item bucketMilk;
-    public static Item bowlsoup;
+//	public static Item bucketMilk;
+//    public static Item bowlsoup;
 
 	
 	@Mod.EventHandler
@@ -56,44 +52,28 @@ public class StackSizeChange
 	{
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
-		SignMax = config.get(Configuration.CATEGORY_GENERAL, "SignMax", 64, "Sign Max Stack Size, min = 1, max = 64").getInt();
-		SignMax = (SignMax<1)?1:(SignMax>64)?64:SignMax;
-		DoorMax = config.get(Configuration.CATEGORY_GENERAL, "DoorMax", 64, "Door Max Stack Size, min = 1, max = 64").getInt();
-		DoorMax = (DoorMax<1)?1:(DoorMax>64)?64:DoorMax;
-		BedMax = config.get(Configuration.CATEGORY_GENERAL, "BedMax", 64, "Bed Max Stack Size, min = 1, max = 64").getInt();
-		BedMax = (BedMax<1)?1:(BedMax>64)?64:BedMax;
-		CakeMax = config.get(Configuration.CATEGORY_GENERAL, "CakeMax", 64, "Cake Max Stack Size, min = 1, max = 64").getInt();
-		CakeMax = (CakeMax<1)?1:(CakeMax>64)?64:CakeMax;
-		BoatMax = config.get(Configuration.CATEGORY_GENERAL, "BoatMax", 64, "Boat Max Stack Size, min = 1, max = 64").getInt();
-		BoatMax = (BoatMax<1)?1:(BoatMax>64)?64:BoatMax;
-		CartMax = config.get(Configuration.CATEGORY_GENERAL, "CartMax", 64, "Minecart Max Stack Size, min = 1, max = 64").getInt();
-		CartMax = (CartMax<1)?1:(CartMax>64)?64:CartMax;
-		EggMax = config.get(Configuration.CATEGORY_GENERAL, "EggMax", 64, "Egg Max Stack Size, min = 1, max = 64").getInt();
-		EggMax = (EggMax<1)?1:(EggMax>64)?64:EggMax;
-		EnderMax = config.get(Configuration.CATEGORY_GENERAL, "EnderMax", 64, "EnderParl Max Stack Size, min = 1, max = 64").getInt();
-		EnderMax = (EnderMax<1)?1:(EnderMax>64)?64:EnderMax;
-		SnowMax = config.get(Configuration.CATEGORY_GENERAL, "SnowMax", 64, "Snowball Max Stack Size, min = 1, max = 64").getInt();
-		SnowMax = (SnowMax<1)?1:(SnowMax>64)?64:SnowMax;
-		RecordMax = config.get(Configuration.CATEGORY_GENERAL, "RecordMax", 64, "Record Max Stack Size, min = 1, max = 64").getInt();
-		RecordMax = (RecordMax<1)?1:(RecordMax>64)?64:RecordMax;
-		SaddleMax = config.get(Configuration.CATEGORY_GENERAL, "SaddleMax", 64, "Saddle Max Stack Size, min = 1, max = 64").getInt();
-		SaddleMax = (SaddleMax<1)?1:(SaddleMax>64)?64:SaddleMax;
-		BucketMax = config.get(Configuration.CATEGORY_GENERAL, "BucketMax", 64, "Bucket Max Stack Size, min = 1, max = 64").getInt();
-		BucketMax = (BucketMax<1)?1:(BucketMax>64)?64:BucketMax;
-		PotionMax = config.get(Configuration.CATEGORY_GENERAL, "PotionMax", 64, "Potion Max Stack Size, min = 1, max = 64").getInt();
-		PotionMax = (PotionMax<0)?1:(PotionMax>64)?64:PotionMax;
-		SoupMax = config.get(Configuration.CATEGORY_GENERAL, "SoupMax", 64, "Soup Max Stack Size, min = 1, max = 64").getInt();
-		SoupMax = (SoupMax<1)?1:(SoupMax>64)?64:SoupMax;
-		MilkMax = config.get(Configuration.CATEGORY_GENERAL, "MilkMax", 64, "BucketMilk Max Stack Size, min = 1, max = 64").getInt();
-		MilkMax = (MilkMax<1)?1:(MilkMax>64)?64:MilkMax;
+		SignMax = config.get(Configuration.CATEGORY_GENERAL, "SignMax", 64, "Sign Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		DoorMax = config.get(Configuration.CATEGORY_GENERAL, "DoorMax", 64, "Door Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		BedMax = config.get(Configuration.CATEGORY_GENERAL, "BedMax", 64, "Bed Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		CakeMax = config.get(Configuration.CATEGORY_GENERAL, "CakeMax", 64, "Cake Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		BoatMax = config.get(Configuration.CATEGORY_GENERAL, "BoatMax", 64, "Boat Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		CartMax = config.get(Configuration.CATEGORY_GENERAL, "CartMax", 64, "Minecart Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		EggMax = config.get(Configuration.CATEGORY_GENERAL, "EggMax", 64, "Egg Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		EnderMax = config.get(Configuration.CATEGORY_GENERAL, "EnderMax", 64, "EnderParl Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		SnowMax = config.get(Configuration.CATEGORY_GENERAL, "SnowMax", 64, "Snowball Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		RecordMax = config.get(Configuration.CATEGORY_GENERAL, "RecordMax", 64, "Record Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		SaddleMax = config.get(Configuration.CATEGORY_GENERAL, "SaddleMax", 64, "Saddle Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		BucketMax = config.get(Configuration.CATEGORY_GENERAL, "BucketMax", 64, "Bucket Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+//		PotionMax = config.get(Configuration.CATEGORY_GENERAL, "PotionMax", 64, "Potion Max Stack Size, min = 1, max = 64").getInt();
+//		PotionMax = (PotionMax<0)?1:(PotionMax>64)?64:PotionMax;
+		SoupMax = config.get(Configuration.CATEGORY_GENERAL, "SoupMax", 64, "Soup Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		MilkMax = config.get(Configuration.CATEGORY_GENERAL, "MilkMax", 64, "BucketMilk Max Stack Size, min = 1, max = 64", 1, 64).getInt();
 //		BucketWaterMax = config.get(Configuration.CATEGORY_GENERAL, "BucketWaterMax", 64, "BucketWater Max Stack Size, min = 1, max = 64").getInt();
 //		BucketWaterMax = (BucketWaterMax<1)?1:(BucketWaterMax>64)?64:BucketWaterMax;
 //		BucketLavaMax = config.get(Configuration.CATEGORY_GENERAL, "BucketLavaMax", 64, "BucketLava Max Stack Size, min = 1, max = 64").getInt();
 //		BucketLavaMax = (BucketLavaMax<1)?1:(BucketLavaMax>64)?64:BucketLavaMax;
-		EnchantBookMax = config.get(Configuration.CATEGORY_GENERAL, "EnchantBookMax", 64, "EnchantableBook Max Stack Size, min = 1, max = 64").getInt();
-		EnchantBookMax = (EnchantBookMax<1)?1:(EnchantBookMax>64)?64:EnchantBookMax;
-		HorseArmorMax = config.get(Configuration.CATEGORY_GENERAL, "HorseArmorMax", 64, "Horse Armor Max Stack Size, min = 1, max = 64").getInt();
-		HorseArmorMax = (HorseArmorMax<1)?1:(HorseArmorMax>64)?64:HorseArmorMax;
+		EnchantBookMax = config.get(Configuration.CATEGORY_GENERAL, "EnchantBookMax", 64, "EnchantableBook Max Stack Size, min = 1, max = 64", 1, 64).getInt();
+		HorseArmorMax = config.get(Configuration.CATEGORY_GENERAL, "HorseArmorMax", 64, "Horse Armor Max Stack Size, min = 1, max = 64", 1, 64).getInt();
 //		BucketReplace = config.get(Configuration.CATEGORY_GENERAL, "BucketReplace", true).getBoolean(true);
 //		addStackableBucket = config.get(Configuration.CATEGORY_GENERAL, "addStackableBucket", false).getBoolean(false);
 //		StackableBucketID = config.get(Configuration.CATEGORY_GENERAL, "StackableBucketID", 17250, "only use addStackableBacket=true. on use +0..+3 IDs, min = 4096, max = 31996").getInt();
@@ -121,7 +101,7 @@ public class StackSizeChange
 		Items.cake.setMaxStackSize(CakeMax);
 		Items.bed.setMaxStackSize(BedMax);
 		Items.ender_pearl.setMaxStackSize(EnderMax);
-		Items.potionitem.setMaxStackSize(PotionMax);
+//		Items.potionitem.setMaxStackSize(PotionMax);
         Items.mushroom_stew.setMaxStackSize(SoupMax);
         Items.record_13.setMaxStackSize(RecordMax);
         Items.record_cat.setMaxStackSize(RecordMax);
