@@ -1,20 +1,15 @@
 package StackSizeChange;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemBucketMilk;
-import net.minecraft.item.ItemPotion;
-import net.minecraft.item.ItemSoup;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 
 /**
  * Created by A.K. on 14/10/23.
  */
 public class ItemUseEventHook {
 
-    @SubscribeEvent
+ /*   @SubscribeEvent
     public void itemUseFinish(PlayerUseItemEvent.Finish event) {
         if (event.entityPlayer.worldObj.isRemote) return;
         EntityPlayer player = event.entityPlayer;
@@ -30,19 +25,19 @@ public class ItemUseEventHook {
             if (useItemStack.stackSize <= 0) return;
             event.result = useItemStack;
             player.inventory.addItemStackToInventory(new ItemStack(Items.bowl));
-            dropEmptyItem(new ItemStack(Items.bowl), player);
+            dropEmptyItem(new ItemStack(Items.BOWL), player);
         }
 
         if (useItemStack.getItem() instanceof ItemBucketMilk) {
             if (useItemStack.stackSize <= 0) return;
             player.inventory.addItemStackToInventory(new ItemStack(Items.bucket));
-            dropEmptyItem(new ItemStack(Items.bucket), player);
+            dropEmptyItem(new ItemStack(Items.BUCKET), player);
         }
-    }
+    }*/
 
     public void potionUseFinish(ItemStack potionStack, ItemStack result, EntityPlayer player) {
         if (!potionStack.isItemEqual(result)) return;
-        dropEmptyItem(new ItemStack(Items.glass_bottle), player);
+        dropEmptyItem(new ItemStack(Items.GLASS_BOTTLE), player);
     }
 
     public void dropEmptyItem(ItemStack emptyItemStack, EntityPlayer player) {
@@ -54,6 +49,6 @@ public class ItemUseEventHook {
                 return;
             }
         }
-        player.dropPlayerItemWithRandomChoice(emptyItemStack, false);
+        player.dropItem(emptyItemStack, false);
     }
 }
